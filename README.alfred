@@ -1,0 +1,15 @@
+building on centos:
+
+sudo yum -y install libtool
+autoreconf -fvi
+# ./configure --enable-imptcp LIBFASTJSON_CFLAGS=-I/usr/include/libfastjson LIBFASTJSON_LIBS=-lfastjson && make
+
+./configure --enable-imptcp --enable-testbench --without-valgrind-testbench --enable-imdiag --enable-omstdout && make && make check
+
+Latest libfastjson:
+
+git clone https://github.com/rsyslog/libfastjson
+cd libfastjson
+sh autogen.sh
+./configure --libdir=/usr/lib64 && make clean all && sudo make install
+
